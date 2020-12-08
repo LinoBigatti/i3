@@ -814,7 +814,7 @@ void x_draw_decoration(Con *con) {
     x_draw_decoration_after_title(con, p);
 copy_pixmaps:
     x_shape_window(con);
-    draw_util_copy_surface(&(con->frame_buffer), &(con->frame), 0, 0, 0, 0, con->rect.width, con->rect.height);
+		draw_util_copy_surface(&(con->frame_buffer), &(con->frame), 0, 0, 0, 0, con->rect.width, con->rect.height);
 }
 
 /*
