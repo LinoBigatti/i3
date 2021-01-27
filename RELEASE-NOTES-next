@@ -22,3 +22,7 @@ strongly encouraged to upgrade.
   • when initializing new outputs, avoid duplicating workspace numbers
   • fix workspaces not moving to assigned output after output becomes available
   • fix duplicate bindcode after i3-config-wizard
+  • i3bar: properly close file descriptors
+  • i3bar: properly restart status command after config change
+  • i3bar: exit with 1 when a wrong command line argument is used
+  • fix commented-out rofi call in default i3 config
