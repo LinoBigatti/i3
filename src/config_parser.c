@@ -857,7 +857,7 @@ parse_file_result_t parse_file(struct parser_ctx *ctx, const char *f, IncludedFi
     FILE *fstr;
     char buffer[4096], key[512], value[4096], *continuation = NULL;
 
-    char *old_dir = getcwd(NULL, 0);
+    char *old_dir = get_current_dir_name();
     char *dir = NULL;
     /* dirname(3) might modify the buffer, so make a copy: */
     char *dirbuf = sstrdup(f);
@@ -884,11 +884,13 @@ parse_file_result_t parse_file(struct parser_ctx *ctx, const char *f, IncludedFi
         return PARSE_FILE_FAILED;
     }
 
-    included_file->raw_contents = scalloc(stbuf.st_size + 1, 1);
-    if ((ssize_t)fread(included_file->raw_contents, 1, stbuf.st_size, fstr) != stbuf.st_size) {
-        return PARSE_FILE_FAILED;
+	if (included_file->raw_contents == NULL) {
+		included_file->raw_contents = scalloc(stbuf.st_size + 1, 1);
+		if ((ssize_t)fread(included_file->raw_contents, 1, stbuf.st_size, fstr) != stbuf.st_size) {
+	        return PARSE_FILE_FAILED;
+		}
+        rewind(fstr);
     }
-    rewind(fstr);
 
     bool invalid_sets = false;
 

@@ -56,11 +56,18 @@ is(launch_get_border($config), 'normal', 'normal border');
 #####################################################################
 
 my ($fh, $filename) = tempfile(UNLINK => 1);
+<<<<<<< HEAD
 my $varconfig = <<'EOT';
 set $vartest special title
 for_window [title="$vartest"] border none
 EOT
 print $fh $varconfig;
+=======
+print $fh <<'EOT';
+set $vartest special title
+for_window [title="$vartest"] border none
+EOT
+>>>>>>> 8d3641c0 (Implement include config directive (#4420))
 $fh->flush;
 
 $config = <<EOT;
@@ -317,6 +324,7 @@ my $tmpdir = tempdir(CLEANUP => 1);
 my $socketpath = $tmpdir . "/config.sock";
 ok(! -e $socketpath, "$socketpath does not exist yet");
 
+<<<<<<< HEAD
 my ($indirectfh3, $indirectfilename3) = tempfile(UNLINK => 1);
 my $indirectconfig = <<EOT;
 for_window [title="\$vartest"] border none
@@ -325,13 +333,19 @@ EOT
 print $indirectfh3 $indirectconfig;
 $indirectfh3->flush;
 
+=======
+>>>>>>> 8d3641c0 (Implement include config directive (#4420))
 $config = <<EOT;
 # i3 config file (v4)
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 
+<<<<<<< HEAD
 set \$vartest special title
 
 include $indirectfilename3
+=======
+include $indirectfilename2
+>>>>>>> 8d3641c0 (Implement include config directive (#4420))
 
 ipc-socket $socketpath
 EOT
@@ -343,6 +357,7 @@ my $config_reply = $i3->get_config()->recv;
 
 is($config_reply->{config}, $config, 'GET_CONFIG returns the top-level config file');
 
+<<<<<<< HEAD
 my $included = $config_reply->{included_configs};
 is(scalar @{$included}, 3, 'included_configs contains all 3 files');
 is($included->[0]->{raw_contents}, $config, 'included_configs->[0]->{raw_contents} contains top-level config');
@@ -355,6 +370,8 @@ include $relative
 EOT
 is($included->[1]->{variable_replaced_contents}, $indirect_replaced_config, 'included_configs->[1]->{variable_replaced_contents} contains config with variables replaced');
 
+=======
+>>>>>>> 8d3641c0 (Implement include config directive (#4420))
 exit_gracefully($pid);
 
 

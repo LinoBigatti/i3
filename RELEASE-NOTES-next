@@ -14,6 +14,14 @@ strongly encouraged to upgrade.
   • i3-nagbar: position on focused monitor by default
   • i3-nagbar: add option to position on primary monitor
   • alternate focusing tab/stack children-parent containers by clicking on their titlebars
+  • i3bar: use first bar config by default
+  • i3-dump-log -f now uses UNIX sockets instead of pthreads. The UNIX socket approach
+    should be more reliable and also more portable.
+  • Implement the include config directive
+  • Allow for_window to match against WM_CLIENT_MACHINE
+  • Add %machine placeholder (WM_CLIENT_MACHINE) to title_format
+  • Allow multiple output names in 'move container|workspace to output'
+  • Add 'move container|workspace to output next'
 
  ┌────────────────────────────┐
  │ Bugfixes                   │

@@ -71,20 +71,20 @@ state IGNORE_LINE:
 
 # gaps inner|outer|horizontal|vertical|top|right|bottom|left <px>
 state GAPS:
-  scope = 'inner', 'outer', 'horizontal', 'vertical', 'top', 'right', 'bottom', 'left'
-      -> GAPS_WITH_SCOPE
+	scope = 'inner', 'outer', 'horizontal', 'vertical', 'top', 'right', 'bottom', 'left'
+			-> GAPS_WITH_SCOPE
 
 state GAPS_WITH_SCOPE:
-  value = number
-      -> call cfg_gaps($workspace, $scope, &value)
+	value = number
+			-> call cfg_gaps($workspace, $scope, &value)
 
 # smart_borders true|false
 # smart_borders no_gaps
 state SMART_BORDERS:
-  enabled = '1', 'yes', 'true', 'on', 'enable', 'active'
-      -> call cfg_smart_borders($enabled)
-  enabled = 'no_gaps'
-      -> call cfg_smart_borders($enabled)
+	enabled = '1', 'yes', 'true', 'on', 'enable', 'active'
+			-> call cfg_smart_borders($enabled)
+	enabled = 'no_gaps'
+			-> call cfg_smart_borders($enabled)
 
 # smart_gaps on|off
 state SMART_GAPS:
@@ -104,6 +104,11 @@ state INCLUDE:
 state BORDER_RADIUS:
   radius = number
       -> call cfg_border_radius(&radius)
+
+# include <pattern>
+state INCLUDE:
+  pattern = string
+      -> call cfg_include($pattern)
 
 # floating_minimum_size <width> x <height>
 state FLOATING_MINIMUM_SIZE_WIDTH:
@@ -450,6 +455,8 @@ state BINDCOMMAND:
   exclude_titlebar = '--exclude-titlebar'
       ->
   command = string
+      -> call cfg_binding($bindtype, $modifiers, $key, $release, $border, $whole_window, $exclude_titlebar, $command)
+  end
       -> call cfg_binding($bindtype, $modifiers, $key, $release, $border, $whole_window, $exclude_titlebar, $command)
 
 ################################################################################

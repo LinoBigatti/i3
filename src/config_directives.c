@@ -29,7 +29,8 @@ CFGFUN(include, const char *pattern) {
     for (size_t i = 0; i < p.we_wordc; i++) {
         char resolved_path[PATH_MAX] = {'\0'};
         if (realpath(w[i], resolved_path) == NULL) {
-            LOG("Skipping %s: %s\n", w[i], strerror(errno));
+            ELOG("realpath(%s): %s\n", w[i], strerror(errno));
+            result->has_errors = true;
             continue;
         }
 
