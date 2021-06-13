@@ -727,11 +727,35 @@ void x_draw_decoration(Con *con) {
 
     /* 6: draw the icon and title */
     int text_offset_y = (con->deco_rect.height - config.font.height) / 2;
+    int text_offset_x = 0;
+
+    struct Window *win = con->window;
 
     struct Window *win = con->window;
 
     const int deco_width = (int)con->deco_rect.width;
     const int title_padding = logical_px(2);
+
+    /* Draw the icon */
+    if (con->window_icon_padding > -1 && win && win->icon) {
+        /* icon_padding is applied horizontally only,
+         * the icon will always use all available vertical space. */
+        const int icon_padding = logical_px(1 + con->window_icon_padding);
+
+        const uint16_t icon_size = con->deco_rect.height - 2 * logical_px(1);
+
+        const int icon_offset_y = logical_px(1);
+
+        text_offset_x += icon_size + 2 * icon_padding;
+
+        draw_util_image(
+            win->icon,
+            &(parent->frame_buffer),
+            con->deco_rect.x + icon_padding,
+            con->deco_rect.y + icon_offset_y,
+            icon_size,
+            icon_size);
+    }
 
     int mark_width = 0;
     if (config.show_marks && !TAILQ_EMPTY(&(con->marks_head))) {
@@ -834,7 +858,7 @@ void x_draw_decoration(Con *con) {
 
     draw_util_text(title, &(parent->frame_buffer),
                    p->color->text, p->color->background,
-                   con->deco_rect.x + title_offset_x,
+                   con->deco_rect.x + text_offset_x + title_offset_x,
                    con->deco_rect.y + text_offset_y,
                    deco_width - mark_width - 2 * title_padding - total_icon_space);
     if (has_icon) {
