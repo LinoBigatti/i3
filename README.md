@@ -3,13 +3,13 @@
 [![Forks](https://img.shields.io/github/forks/Airblader/i3.svg)](https://github.com/Airblader/i3/network)
 [![Stars](https://img.shields.io/github/stars/Airblader/i3.svg)](https://github.com/Airblader/i3/stargazers)
 
-# Rounded i3-gaps
+# i3-rounded
 
 For anyone wondering how to configure rounded window corners, see [configuration](#rounded-window-corners).
 
-## What is Rounded i3-gaps?
+## What is i3-rounded?
 
-Rounded i3-gaps is a fork of i3-gaps that adds rounding to window corners. 
+i3-rounded is a fork of i3-gaps that adds rounding to window corners. It was originally made by [resloved](https://github.com/resloved) and this repo strives to keep it (hopefully) up to date.
 
 ## What is i3-gaps
 
@@ -18,17 +18,17 @@ i3-gaps is a fork of [i3wm](https://www.i3wm.org), a tiling window manager for X
 ![i3](https://i.imgur.com/KC7GL4D.png)
 
 
-## How do I install i3-gaps?
+## How do I install i3-rounded?
 
 If you're running an Arch-based distro, you can install it from the AUR (`i3-gaps-rounded`).
 
 If not, unless there is a repository for your distro, you will probably have to compile it yourself. To do so, refer to the [wiki](https://github.com/Airblader/i3/wiki/Building-from-source).
 
-*Note:* When cloning the repo, replace `Airblader/i3` with `linobigatt/i3-rounded`.
+*Note:* When cloning the repo, replace `Airblader/i3` with `linobigatti/i3-rounded`.
 
 ## Where can I get help?
 
-For bug reports or feature requests regarding Rounded i3-gaps specifically, open an issue on [GitHub](https://www.github.com/Resloved/i3). 
+For bug reports or feature requests regarding i3-rounded specifically, open an issue on [GitHub](https://www.github.com/linobigatti/i3-rounded). 
 
 If your issue is with i3-gaps, report it [here](https://github.com/Airblader/i3).
 
